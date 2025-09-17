@@ -101,15 +101,44 @@ class MyLinkedList {
       temp = temp.next;
     }
   }
+
+  get(index) {
+    let counter = 0;
+    let temp = this.head;
+    while (temp) {
+      if (counter === index) {
+        return temp;
+      }
+
+      counter++;
+
+      temp = temp.next;
+    }
+    return null;
+  }
+
+  set(index, value) {
+    let temp = this.get(index);
+
+    if (temp) {
+      temp.value = value; 
+      return true;
+    }
+
+    return false;
+  }
 }
 
 // Create a new linked list and push a value
 const myNewList = new MyLinkedList(1);
 myNewList.push(2);
+myNewList.push(3);
 // myNewList.push(70);
 // myNewList.unshift(30);
 // myNewList.shift();
 
 // myNewList.getLast();
 
-console.log(myNewList.getLast());
+console.log(myNewList.set(2, 30));
+console.log(myNewList);
+
