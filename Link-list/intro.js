@@ -121,11 +121,50 @@ class MyLinkedList {
     let temp = this.get(index);
 
     if (temp) {
-      temp.value = value; 
+      temp.value = value;
       return true;
     }
 
     return false;
+  }
+
+  insert(index, value) {
+    const newNode = new MyNode(value);
+
+    if (index === 0) {
+      return this.unshift(value);
+    }
+
+    if (index === this.length) {
+      return this.push(value);
+    }
+
+    const temp = this.get(index - 1);
+
+    newNode.next = temp.next;
+    temp.next = newNode;
+
+    this.length++;
+
+    return true;
+  }
+
+  size() {
+    let counter = 0;
+
+    let temp = this.head;
+
+    while (temp) {
+      counter++;
+
+      temp = temp.next;
+    }
+
+    return counter;
+  }
+
+  clear() {
+    this.head = null;
   }
 }
 
@@ -139,6 +178,5 @@ myNewList.push(3);
 
 // myNewList.getLast();
 
-console.log(myNewList.set(2, 30));
-console.log(myNewList);
-
+console.log(myNewList.insert(0, 30));
+console.log(myNewList.clear());
